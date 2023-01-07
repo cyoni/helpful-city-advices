@@ -1,6 +1,17 @@
-button{
-    padding: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
+
+button {
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+body{
+    font-family: "arial";
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-inline: 30px;
   }
+}

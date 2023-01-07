@@ -1,30 +1,29 @@
 .header-container {
-  width: 80%;
   margin-inline: auto;
   position: relative;
 }
 
 .header-image {
-  border-radius: 10px;
   width: 100%;
-  height: 400px;
-  margin-block: 1rem;
+  min-height: 400px;
 }
 
-.header--title{
+.header--title {
   font-size: 2.5rem;
   font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .header--text {
   position: absolute;
   color: white;
-  font-size: 60px;
   letter-spacing: 2px;
   font-weight: 600;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* font-size: clamp(3rem, 2vw, 5rem); */
+  font-size: 4rem;
 }
 
 .container-body {
@@ -34,13 +33,57 @@
 
 .actions-buttons-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 10px 0;
+  flex-direction: row-reverse;
+  margin-inline: auto;
+  margin-top: 1rem;
 }
 
 .actions-buttons {
   display: flex;
   gap: 5px;
- 
+}
 
+@media (min-width: 768px) {
+  .header-image {
+    border-radius: 10px;
+  }
+}
+
+.questions {
+  margin-top: 2rem;
+}
+
+.questions--item {
+  font-size: 1.25rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.questions--item--answer {
+  margin-top: 0.225rem;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 8px;
+  max-width: 40rem;
+}
+
+.questions--item--answer--buttons-actions{
+  margin-top:1rem;
+  font-size: 0.9rem;
+}
+.questions--item--answer--buttons-actions:visited{
+
+}
+
+.compose-question-container{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+
+}  
+.compose-question-input{
+  width: 100%;
+  max-width: 300px;
 }

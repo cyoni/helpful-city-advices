@@ -2,8 +2,17 @@ import Head from "next/head"
 import Image from "next/image"
 import { Inter } from "@next/font/google"
 import styles from "../styles/Home.module.css"
-
+import { Collapse } from "react-collapse"
+import { useEffect, useState } from "react"
+import data from "../data.json"
+import Link from "next/link"
 export default function Home() {
+  const [isOpen, setIsOpen] = useState<boolean[]>([])
+  const questions = data
+  useEffect(() => {
+    setIsOpen(Array(data.length).fill(false))
+  }, [data])
+
   return (
     <>
       <Head>
@@ -29,18 +38,42 @@ export default function Home() {
       <div className={styles["container-body"]}>
         <div className={styles["actions-buttons-wrapper"]}>
           <div className={styles["actions-buttons"]}>
-            <button>Most Recent</button>
+          <button>Common Questions</button>
+            <button>Community</button>
             <button>Best Questions</button>
-            <button>Common Questions</button>
+   
           </div>
-
+        </div>
+        <div className={styles["compose-question-container"]}>
+          <input className={styles["compose-question-input"]} />
           <button>Add Question</button>
         </div>
-        <div className={styles["question-list"]}>
+        <div className={styles["questions"]}>
           <ul>
-            <li>1. How to get from the Abu Dhabi to Dubai?</li>
-            <li>2. What month is it best to come?</li>
-            <li>3. What is the cheapest way to transit?</li>
+            {questions.map((question, i) => (
+              <li key={question.title}>
+                <div
+                  className={styles["questions--item"]}
+                  onClick={() =>
+                    setIsOpen((prev) => {
+                      const newData = [...prev]
+                      newData[i] = !newData[i]
+                      return newData
+                    })
+                  }
+                >
+                  {question.title}
+                </div>
+                <Collapse isOpened={isOpen[i]}>
+                  <div className={styles["questions--item--answer"]}>
+                    {question.content}
+                    <div  className={styles["questions--item--answer--buttons-actions"]}>
+                    👍 👎 <Link href={"#"}>Comment</Link>
+                    </div>
+                  </div>
+                </Collapse>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
